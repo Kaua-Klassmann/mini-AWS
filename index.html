@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="input" placeholder="Digite seu nome">
+    <button id="button">Enviar</button>
+    <h1 id="response"></h1>
+</body>
+<script>
+    let input = document.getElementById("input");
+    let button = document.getElementById("button");
+    let h1 = document.getElementById("response");
+
+    button.addEventListener("click", async () => {
+        let value = input.value;
+
+        const response = await fetch("https://7jbtceitz7jdibg2skqmn2qgoy0pugfi.lambda-url.sa-east-1.on.aws/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: value
+            })
+        })
+
+        const data = await response.json();
+
+        h1.innerText = data;
+    })
+</script>
+</html>
