@@ -14,6 +14,9 @@ def lambda_handler(event, context):
     if message is None:
         return {
             'statusCode': 400,
+            'headers': {
+                'Access-Control-Allow-Origin': '*'
+            },
             'body': json.dumps('No message provided')
         }
 
@@ -21,5 +24,8 @@ def lambda_handler(event, context):
 
     return {
         'statusCode': 200,
+        'headers': {
+            'Access-Control-Allow-Origin': '*'
+        },
         'body': json.dumps(message)
     }
